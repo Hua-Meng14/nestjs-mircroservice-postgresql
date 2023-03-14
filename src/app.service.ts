@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { ItemEntity } from './items/item.entity';
 import { ItemRepository } from './items/item.repository';
 
@@ -25,7 +25,13 @@ export class AppService {
   }
 
 
-  getItemById(id) {
-    return this.itemRepository.findOne({ where: { id } });
+  async getItemById(id) {
+    const item = await this.itemRepository.findOne({ where: { id } });
+    // console.log(item) 
+    if (!item) {
+      throw new NotFoundException('Item not found with id,', id);
+    }
+    return item
+
   }
 }
