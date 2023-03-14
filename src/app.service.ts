@@ -3,6 +3,11 @@ import { ItemEntity } from './items/item.entity';
 import { ItemRepository } from './items/item.repository';
 
 
+class CreateItemDto {
+  id: number;
+  name: string;
+}
+
 @Injectable()
 export class AppService {
   constructor(private readonly itemRepository: ItemRepository) { }
@@ -11,16 +16,16 @@ export class AppService {
     return 'Hello World!';
   }
 
-  createItem(itemDto: { name: any; }) {
-    const item = new ItemEntity();
-    itemDto.name = itemDto.name;
-    return this.itemRepository.save(item)
+  createItem(createItemDto: CreateItemDto): Promise<ItemEntity> {
+    return this.itemRepository.createItem(createItemDto);
+    // const item = new ItemEntity();
+    // item.name = itemDto.name;
+    // return this.itemRepository.save(item)
+
   }
+
 
   getItemById(id) {
-    return this.itemRepository.findOne(id);
+    return this.itemRepository.findOne({ where: { id } });
   }
-
-
-
 }

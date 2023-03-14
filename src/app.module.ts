@@ -17,9 +17,9 @@ import { ItemRepository } from './items/item.repository';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    TypeOrmModule.forFeature([ItemRepository, ItemEntity])
+    TypeOrmModule.forFeature([ItemEntity])
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ItemRepository],
 })
 export class AppModule { }

@@ -13,7 +13,7 @@ export class AppController {
 
   @MessagePattern({ role: 'item', cmd: 'create' })
   createItem(itemDto) {
-    console.log(itemDto)
+    // console.log(itemDto)
     return this.appService.createItem(itemDto);
   }
 
