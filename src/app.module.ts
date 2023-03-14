@@ -9,11 +9,11 @@ import { ItemRepository } from './items/item.repository';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.POSTGRES_HOST,
       port: 5432,
-      username: 'postgres',
-      password: '123',
-      database: 'item',
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DATABASE,
       synchronize: true,
       autoLoadEntities: true,
     }),
